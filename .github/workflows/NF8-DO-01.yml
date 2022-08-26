@@ -6,10 +6,11 @@ name: Node.js CI
 on:
   pull_request:
     types: [opened]
-    branches: [feature/**]
+    branches: [main]
 
 jobs:
   build:
+    if:  startsWith(github.head_ref, 'feature/')
     runs-on: ubuntu-latest
     strategy:
       matrix:
