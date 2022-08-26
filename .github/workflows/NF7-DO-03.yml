@@ -1,0 +1,15 @@
+# Mettez en place la pipeline de validation des [commits](https://github.com/webiny/action-conventional-commits) sur toutes les branches `features/`
+
+name: Conventional Commits
+
+on:
+  pull_request:
+    branches: [ feature/** ]
+
+jobs:
+  build:
+    name: Conventional Commits
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: webiny/action-conventional-commits@v1.0.5
