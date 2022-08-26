@@ -1,11 +1,11 @@
-name: CI - Build + Coverage artifact
+name: Node.js CI
 
 # Créer une pipeline pour automatiser le lancement des tests lorsqu'une PR est validée depuis une branche `feature/<nom_feature>` vers la branche `develop`.
 # Elle testera l'application sur les versions 14 et 15 de node uniquement.
 
 on:
   pull_request:
-    types: [opened, reopened]
+    types: [opened]
     branches: [main]
 
 jobs:
@@ -16,16 +16,16 @@ jobs:
       matrix:
         node-version: [14.x, 16.x]
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - run: npm run build --if-present
-      - name: generate and upload artefact
-        run: npm run test:coverage > coverage.txt
+      - run: npm run test:coverage > coverage.txt
+      - name: upload artefact
+        uses: actions/upload-artifact@v3
         with:
           name: coverage
           path: coverage.txt
