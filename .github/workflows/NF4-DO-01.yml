@@ -5,7 +5,7 @@ on:
     types: [ assigned ]
 jobs:
   create_issue_branch_job:
-    if: startsWith(github.event.issue.title, feature/)
+    if: startsWith(github.event.issue.title, 'feature/'')
     runs-on: ubuntu-latest
     steps:
       - name: Create Issue Branch
