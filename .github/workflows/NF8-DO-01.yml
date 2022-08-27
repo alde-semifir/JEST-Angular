@@ -1,7 +1,7 @@
-name: Node.js CI
 
 # Créer une pipeline pour automatiser le lancement des tests lorsqu'une PR est validée depuis une branche `feature/<nom_feature>` vers la branche `develop`.
 # Elle testera l'application sur les versions 14 et 15 de node uniquement.
+name: Build and Test
 
 on:
   pull_request:
